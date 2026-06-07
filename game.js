@@ -53,7 +53,8 @@
   const ball = { x: W / 2, y: PADDLE_Y - BALL_R, dx: 0, dy: 0, r: BALL_R, stuck: true };
   let bricks = [];
 
-  let pointerX = null; // target paddle center from mouse/touch
+  let pointerX = null;     // target paddle center from mouse/touch
+  let snapPaddle = false;  // true while dragging by touch -> 1:1 tracking
   const keys = { left: false, right: false };
 
   // ---- Level / brick setup ----
@@ -156,18 +157,29 @@
   }
 
   canvas.addEventListener("mousemove", (e) => {
+    snapPaddle = false;
     pointerX = pointerToCanvasX(e.clientX);
   });
 
   canvas.addEventListener("touchmove", (e) => {
     e.preventDefault();
-    if (e.touches.length) pointerX = pointerToCanvasX(e.touches[0].clientX);
+    if (e.touches.length) {
+      snapPaddle = true;
+      pointerX = pointerToCanvasX(e.touches[0].clientX);
+    }
   }, { passive: false });
 
   canvas.addEventListener("touchstart", (e) => {
     e.preventDefault();
-    if (e.touches.length) pointerX = pointerToCanvasX(e.touches[0].clientX);
+    if (e.touches.length) {
+      snapPaddle = true;
+      pointerX = pointerToCanvasX(e.touches[0].clientX);
+    }
     if (state === STATE.PLAYING) launchBall();
+  }, { passive: false });
+
+  canvas.addEventListener("touchend", (e) => {
+    e.preventDefault();
   }, { passive: false });
 
   canvas.addEventListener("mousedown", () => {
@@ -227,10 +239,10 @@
     if (keys.left) paddle.x -= kbSpeed;
     if (keys.right) paddle.x += kbSpeed;
 
-    // Paddle movement: pointer (smooth follow)
+    // Paddle movement: pointer. Touch tracks 1:1 (snap); mouse eases smoothly.
     if (pointerX !== null) {
       const target = pointerX - paddle.w / 2;
-      paddle.x += (target - paddle.x) * 0.35;
+      paddle.x += (target - paddle.x) * (snapPaddle ? 1 : 0.4);
     }
 
     // Clamp paddle
