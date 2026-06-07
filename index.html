@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0b1021" />
+  <title>Brick Breaker</title>
+  <meta name="description" content="A classic brick breaker arcade game. Works offline." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%23ff5b6e'/></svg>" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="hud">
+      <div class="hud-item"><span class="hud-label">Score</span><span id="score">0</span></div>
+      <div class="hud-item"><span class="hud-label">Level</span><span id="level">1</span></div>
+      <div class="hud-item"><span class="hud-label">Lives</span><span id="lives">3</span></div>
+      <div class="hud-item"><span class="hud-label">Best</span><span id="best">0</span></div>
+    </header>
+
+    <div class="canvas-wrap">
+      <canvas id="game" width="480" height="600"></canvas>
+
+      <div id="overlay" class="overlay">
+        <h1 id="overlay-title">Brick Breaker</h1>
+        <p id="overlay-text">Clear every brick to advance. Don't let the ball fall!</p>
+        <button id="start-btn" class="btn">Start Game</button>
+        <p class="hint">Move: Mouse / Touch / &larr; &rarr; keys &nbsp;&bull;&nbsp; Launch / Pause: Space</p>
+      </div>
+    </div>
+
+    <footer class="controls">
+      <button id="pause-btn" class="btn small">Pause</button>
+      <button id="restart-btn" class="btn small ghost">Restart</button>
+    </footer>
+  </div>
+
+  <script src="game.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

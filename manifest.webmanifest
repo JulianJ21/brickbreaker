@@ -1,0 +1,19 @@
+{
+  "name": "Brick Breaker",
+  "short_name": "Bricks",
+  "description": "A classic brick breaker arcade game. Works offline.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1021",
+  "theme_color": "#0b1021",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%230b1021'/%3E%3Crect x='28' y='40' width='40' height='20' rx='4' fill='%23ff5b6e'/%3E%3Crect x='76' y='40' width='40' height='20' rx='4' fill='%23ff8a5b'/%3E%3Crect x='124' y='40' width='40' height='20' rx='4' fill='%23ffd166'/%3E%3Crect x='28' y='68' width='40' height='20' rx='4' fill='%2306d6a0'/%3E%3Crect x='76' y='68' width='40' height='20' rx='4' fill='%234cc9f0'/%3E%3Crect x='124' y='68' width='40' height='20' rx='4' fill='%239b5de5'/%3E%3Crect x='70' y='150' width='52' height='12' rx='6' fill='%23cfd6ff'/%3E%3Ccircle cx='96' cy='120' r='10' fill='%23ffffff'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
